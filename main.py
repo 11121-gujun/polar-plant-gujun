@@ -320,18 +320,20 @@ def fmt_id(v):
         return str(v)
 
 
-# ───────────── Plotly 템플릿 (titlefont 제거 — 축 제목은 전역 font에서 상속) ─────────────
+# ───────────── Plotly 템플릿 ─────────────
+# 이 Plotly 버전에서는 xaxis/yaxis dict에 titlefont를 넣지 않는다.
+# 축 제목 폰트는 템플릿 레벨 title.font와 전역 font에서 상속받는다.
 import plotly.io as pio
 pio.templates["solar"] = go.layout.Template(
     layout=go.Layout(
         font=dict(family=FONT, color="#334155", size=12),
+        title=dict(font=dict(color="#0f172a", size=14, family=FONT, weight=600), x=0.02, xanchor="left"),
         paper_bgcolor="rgba(255,255,255,0)",
         plot_bgcolor="rgba(255,255,255,0)",
         xaxis=dict(
             gridcolor="#e2e8f0",
             linecolor="#cbd5e1",
             tickfont=dict(color="#64748b", size=11),
-            titlefont=dict(color="#475569", size=12, family=FONT),
             zerolinecolor="#cbd5e1",
             zerolinewidth=1.2,
         ),
@@ -339,7 +341,6 @@ pio.templates["solar"] = go.layout.Template(
             gridcolor="#e2e8f0",
             linecolor="#cbd5e1",
             tickfont=dict(color="#64748b", size=11),
-            titlefont=dict(color="#475569", size=12, family=FONT),
             zerolinecolor="#cbd5e1",
             zerolinewidth=1.2,
         ),
@@ -355,7 +356,6 @@ pio.templates["solar"] = go.layout.Template(
         ),
         margin=dict(l=48, r=48, t=56, b=48),
         hoverlabel=dict(bgcolor="#0f172a", font=dict(color="#f8fafc", family=FONT, size=12)),
-        title=dict(font=dict(color="#0f172a", size=14, family=FONT, weight=600), x=0.02, xanchor="left"),
     )
 )
 
